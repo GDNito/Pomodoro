@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro</title>
+    <link rel="shortcut icon" href="imgs/tomato.svg" type="image/x-icon">
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="h-screen grid grid-rows-5">
+    <div id="upperhalf" class="row-span-4 flex flex-col bg-red-400 justify-center items-center">
+        <nav id="nav" class="bg-red-500 flex justify-between items-center w-full absolute top-0 py-4 px-8 text-white" >
+             <h2 class="font-mono text tracking-widest cursor-pointer" onclick="location.reload()">pomodoro</h2>
+             <img src="imgs/settings.svg" class="h-8 w-8 cursor-pointer fill-white" alt="settings" onclick="changeVisibility(true)">
+        </nav>
+        <h2 id="clock" class="text-[140pt] font-mono text-white">00:00</h2>
+        <img id="play" src="imgs/play.svg" class="h-12" onclick="playPause()">
+    </div>
+    <div id="lowerhalf" class="flex justify-around items-center row-span-2">
+        <div id="decrease" class="flex gap-8">
+            <input type="button" value="-1m" class="size-28 border-2 rounded-full" onclick="decrease(60)">
+            <input type="button" value="-30s" class="size-28 border-2 rounded-full" onclick="decrease(30)">
+            <input type="button" value="-15s" class="size-28 border-2 rounded-full"onclick="decrease(15)">
+        </div>
+        <div id="increase" class="flex gap-8">
+            <input type="button" value="+1m" class="size-28 border-2 rounded-full" onclick="increase(60)">
+            <input type="button" value="+30s" class="size-28 border-2 rounded-full" onclick="increase(30)">
+            <input type="button" value="+15s" class="size-28 border-2 rounded-full" onclick="increase(15)">
+        </div>
+    </div>
+    <div id="popup" class="fixed hidden items-center justify-center h-screen w-screen">
+        <div class="h-full w-full absolute bg-red-950 opacity-40">
+
+        </div>
+        <div id="config" class=" w-1/4 border-2 bg-red-400 z-10 px-3 py-3 text-white text-lg">
+        <div id="titleConfig" class="flex items-center justify-between ">
+            <h2 class="font-mono tracking-wide"> configurações</h2>
+            <h2 class="font-mono text-2xl cursor-pointer" onclick="changeVisibility(false)">X</h2>
+        </div>
+        <div id="configs" class="flex flex-col gap-4 pt-6 ">
+            <span class="flex justify-between"><label for="foco">Tempo de foco</label>
+            <input type="number" name="foco" id="foco" class="text-black text-center w-20"></span>
+            
+            <span class="flex justify-between"><label for="descanso">Tempo de descanso</label>
+            <input type="number" name="descanso" id="descanso" max="60" class="text-black text-center w-20"></span>
+
+            <span class="flex justify-between"><label for="descanso">Iniciar foco automaticamente</label>
+            <input type="checkbox" name="descanso" id="descanso" max="60" class="text-black w-20"></span>
+
+            <span class="flex justify-between"><label for="descanso">começar descanso automaticamente</label>
+            <input type="checkbox" name="descanso" id="descanso" max="60" class="text-black w-20"></span>
+            <input type="button" value="Salvar Configurações" class="cursor-pointer hover:text-red-600" onclick="saveSettings()">
+        </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
