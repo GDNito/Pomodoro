@@ -18,22 +18,9 @@ focusSetting.value = starterMinutes
 restSetting.value = restMinutes
 
 
-function setVisibility() {
-    if (configVisibility) {
-        configPopup.style.display = "flex"
-    } else{
-        configPopup.style.display = "none"
-    }
-}
-
 function changeVisibility(state){
-    if (state) {
-        configVisibility = true
-    }
-    else{
-        configVisibility = false
-    }
-    setVisibility()
+    configVisibility = state
+    configPopup.style.display = configVisibility ? "flex" : "none";
 }
 
 function formatTimer(){
@@ -109,22 +96,16 @@ function saveSettings() {
     formatTimer()
 }
 
-function modeSetter(){
-    if(focus){
-        minutes = restMinutes
-        seconds = 0
-        nav.style.background = "#3b82f6"
-        upperhalf.style.background = "#60a5fa"
-        focus = false
-    } else {
-        minutes = starterMinutes
-        seconds = 0
-        nav.style.background = "#ef4444"
-        upperhalf.style.background = "#f87171"
-        focus = true
-    }
+function modeSetter() {
+    const colors = focus
+        ? { nav: "#3b82f6", upper: "#60a5fa" }
+        : { nav: "#ef4444", upper: "#f87171" };
+    nav.style.background = colors.nav;
+    upperhalf.style.background = colors.upper;
+    minutes = focus ? restMinutes : starterMinutes;
+    seconds = 0;
+    focus = !focus;
+    formatTimer();
 }
 
 formatTimer()
-
-
